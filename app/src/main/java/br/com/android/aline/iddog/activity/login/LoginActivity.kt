@@ -1,10 +1,14 @@
 package br.com.android.aline.iddog.activity.login
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import br.com.android.aline.iddog.R
 import br.com.android.aline.iddog.activity.home.HomeDogActivity
 import br.com.android.aline.iddog.utils.PreferenceHelper
@@ -27,7 +31,6 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         presenter.getEmailChange()
         checkIsNewUser()
         btn_login.setOnClickListener { presenter.getTokenService() }
-
     }
 
     override fun checkNetwork(): Boolean {
@@ -47,13 +50,16 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun enableButton() {
+        hideKeyBoard()
+        btn_login.setTextColor(resources.getColor(R.color.colorDefaultBtn))
         btn_login.isEnabled = true
-        btn_login.setBackgroundResource(R.drawable.ic_enter_enable)
+        btn_login.setBackgroundResource(R.drawable.background_btn_enable)
     }
 
     override fun disableButton() {
+        btn_login.setTextColor(resources.getColor(R.color.colorTextBtnDisable))
         btn_login.isEnabled = false
-        btn_login.setBackgroundResource(R.drawable.ic_enter_disable)
+        btn_login.setBackgroundResource(R.drawable.background_btn_disable)
     }
 
     override fun setError() {
@@ -76,14 +82,33 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun checkIsNewUser() {
-        val prefs = PreferenceHelper.customPreference(applicationContext, PreferenceHelper.TOKEN_USER)
-        prefs.contains(PreferenceHelper.TOKEN_USER).let {
-            if(it){
-                val value = prefs.getString(PreferenceHelper.TOKEN_USER, PreferenceHelper.DEFAULT_VALUE_SHARED)
-                if (value != "") goToHome()
-            } else return
+        presenter.checkNewUser()
+    }
+
+    override fun hideKeyBoard() {
+        val view = this.currentFocus
+        view.let {
+            val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it!!.windowToken, 0)
         }
     }
+
+    override fun startAnimationLoading() {
+        loading.show()
+    }
+
+    override fun stopAnimationLoading() {
+        loading.hide()
+    }
+
+    override fun hideBtn() {
+        btn_login.visibility = View.INVISIBLE
+    }
+
+    override fun showBtn() {
+        btn_login.visibility = View.VISIBLE
+    }
+
 
 }
 

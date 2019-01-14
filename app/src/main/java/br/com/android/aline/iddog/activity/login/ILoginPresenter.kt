@@ -1,5 +1,7 @@
 package br.com.android.aline.iddog.activity.login
 
+import android.content.SharedPreferences
+
 interface ILoginPresenter {
 
     val view : ILoginView
@@ -7,6 +9,7 @@ interface ILoginPresenter {
     fun getTokenService()
     fun saveCacheToken(token : String?)
     fun getEmailChange()
+    fun checkNewUser()
 
 
 }

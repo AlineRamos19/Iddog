@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
+import br.com.android.aline.iddog.App
 
 class Utils {
 
@@ -14,6 +15,16 @@ class Utils {
                     context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
              val networkInfo  = connectivityManager.activeNetworkInfo
             return networkInfo != null && networkInfo.isConnected
+        }
+
+        fun getToken() : String{
+            var token = ""
+            val preferences =
+                    PreferenceHelper.customPreference(App.context!!.applicationContext, PreferenceHelper.TOKEN_USER)
+            preferences.contains(PreferenceHelper.TOKEN_USER).let {
+                if(it) token = preferences.getString(PreferenceHelper.TOKEN_USER, PreferenceHelper.DEFAULT_VALUE_SHARED)
+            }
+            return token
         }
     }
 }
@@ -49,6 +60,4 @@ object PreferenceHelper {
                 it.remove(TOKEN_USER)
             }
         }
-
-
 }

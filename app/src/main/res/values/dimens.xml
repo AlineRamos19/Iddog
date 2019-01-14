@@ -5,4 +5,8 @@
     <dimen name="margin_min_8">8dp</dimen>
     <dimen name="margin_card_4">4dp</dimen>
     <dimen name="margin_min_4">4dp</dimen>
+    <dimen name="max_height_login">200dp</dimen>
+    <dimen name="margin_btn_signin">16dp</dimen>
+    <dimen name="padding_logo_16">16dp</dimen>
+    <dimen name="size_logo_32">32sp</dimen>
 </resources>

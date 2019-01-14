@@ -46,6 +46,7 @@ ext {
     rxJava2AndroidVersion = "2.1.0"
     rxAdapterVersion = "2.3.0"
     loggingVersion = "3.6.0"
+    aviVersionLoading = '2.1.3'
 }
 
 dependencies {
@@ -83,6 +84,8 @@ dependencies {
 
     //HttpLogging
     implementation "com.squareup.okhttp3:logging-interceptor:${loggingVersion}"
+
+    implementation "com.wang.avi:library:${aviVersionLoading}"
 
 
 }

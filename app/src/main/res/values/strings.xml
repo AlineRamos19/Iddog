@@ -16,16 +16,20 @@
     <string name="set_error_valid_email">Insira um e-mail válido</string>
 
     <string name="dialog_error">Indisponibilidade do serviço no momento. Tente novamente mais tarde.</string>
+
+    //labels for the dogs list
     <string name="title_out_menu">Sair</string>
-    <string name="title_toolbar_home">Home</string>
+    <string name="title_toolbar_home">Iddog</string>
     <string name="label_husky">HUSKY</string>
     <string name="label_hound">HOUND</string>
     <string name="label_pug">PUG</string>
     <string name="label_labrador">LABRADOR</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //login
     <string name="logo_id">id</string>
     <string name="btn_sign_in">Entrar</string>
+    <string name="label_logo_id">id</string>
+    <string name="label_logo_dog">dog</string>
 
 </resources>

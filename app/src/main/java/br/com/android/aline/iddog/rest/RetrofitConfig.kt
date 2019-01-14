@@ -1,5 +1,8 @@
 package br.com.android.aline.iddog.rest
 
+import android.content.SharedPreferences
+import br.com.android.aline.iddog.utils.PreferenceHelper
+import br.com.android.aline.iddog.utils.Utils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -35,18 +38,18 @@ class RetrofitConfig {
     fun getApiService(): RetrofitService {
         return retrofit.create(RetrofitService::class.java)
     }
-
 }
 
 class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain?): Response {
+
+
+
         val requestBuilder = chain!!.request().newBuilder()
-        requestBuilder.header("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJpZGRvZy1zZXJ2aWNlIiwic3ViIjoiNWMzYTgzZTM1YTk0MDE2NzJkYTVkMDIyIiwiaWF0IjoxNTQ3MzM4NzIzLCJleHAiOjE1NDg2MzQ3MjN9.T8xaFRx0Z8J0s6K078R9SH7IOlKGOdWU1OnaBPLbk9s")
-
+        requestBuilder.header("Authorization", Utils.getToken())
         val request = requestBuilder.build()
-        val response = chain.proceed(request)
+        return  chain.proceed(request)
 
-        return response
     }
 }
 
