@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_pug"
         android:title="@string/label_pug"
-        android:icon="@android:drawable/ic_menu_camera"/>
+        android:icon="@drawable/ic_pug"/>
 
     <item
         android:id="@+id/navigation_labrador"
