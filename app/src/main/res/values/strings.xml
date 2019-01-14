@@ -1,0 +1,31 @@
+<resources>
+
+    //app name
+    <string name="app_name">Iddog</string>
+
+    //hint for EditText e-mail
+    <string name="hint_email">E-mail</string>
+
+    //button content_description
+    <string name="content_description_btn_logar">Botão para acessar a lista de imagens</string>
+
+    //no internet
+    <string name="warning_error_internet">Sem conexão com a internet</string>
+
+    //warnning e-mail invalid
+    <string name="set_error_valid_email">Insira um e-mail válido</string>
+
+    <string name="dialog_error">Indisponibilidade do serviço no momento. Tente novamente mais tarde.</string>
+    <string name="title_out_menu">Sair</string>
+    <string name="title_toolbar_home">Home</string>
+    <string name="label_husky">HUSKY</string>
+    <string name="label_hound">HOUND</string>
+    <string name="label_pug">PUG</string>
+    <string name="label_labrador">LABRADOR</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_id">id</string>
+    <string name="btn_sign_in">Entrar</string>
+
+</resources>
