@@ -2,11 +2,11 @@ package br.com.android.aline.iddog.activity.login
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.content.res.AppCompatResources
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import br.com.android.aline.iddog.R
@@ -18,9 +18,11 @@ import com.jakewharton.rxbinding3.widget.textChanges
 import io.reactivex.observables.ConnectableObservable
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity(), ILoginView {
+class LoginActivity() : AppCompatActivity(), ILoginView {
 
-    private val presenter: LoginPresenter = LoginPresenter(this)
+
+
+    private val presenter: ILoginPresenter = LoginPresenter(this)
     private lateinit var txtEmailTextChange: ConnectableObservable<CharSequence>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +44,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun showErrorInvalidEmail() {
-        input_email.error = resources.getString(R.string.set_error_valid_email)
+        input_email.
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_error_email, 0)
     }
 
     override fun txtEmailTextChange(): ConnectableObservable<CharSequence> {
@@ -50,7 +53,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun enableButton() {
-        hideKeyBoard()
+        //hideKeyBoard()
         btn_login.setTextColor(resources.getColor(R.color.colorDefaultBtn))
         btn_login.isEnabled = true
         btn_login.setBackgroundResource(R.drawable.background_btn_enable)
@@ -63,8 +66,12 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     }
 
     override fun setError() {
+       createDialog(resources.getString(R.string.dialog_error))
+    }
+
+    private fun createDialog(message: String){
         AlertDialog.Builder(this)
-                .setMessage(getString(R.string.dialog_error))
+                .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton("ok") { dialog, _ ->
                     dialog.dismiss()
@@ -108,6 +115,20 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     override fun showBtn() {
         btn_login.visibility = View.VISIBLE
     }
+
+    override fun setErrorEmailDialog() {
+       createDialog(resources.getString(R.string.invalid_email_login))
+    }
+
+    override fun setErrorNotAuthorized(){
+        createDialog(getString(R.string.error_user_unauthorized))
+    }
+
+
+    override fun hideErrorEmail() {
+        input_email.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_email_ok, 0)
+    }
+
 
 
 }

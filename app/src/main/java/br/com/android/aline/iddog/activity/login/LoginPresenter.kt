@@ -1,16 +1,16 @@
 package br.com.android.aline.iddog.activity.login
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
+import br.com.android.aline.iddog.enum.EnumExceptions
 import br.com.android.aline.iddog.models.tokenreceiver.EmailUser
-import br.com.android.aline.iddog.utils.PreferenceHelper
 import br.com.android.aline.iddog.utils.Utils
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 
 class LoginPresenter(override val view: ILoginView) : ILoginPresenter {
 
-
-    lateinit var emailUser: EmailUser
-    lateinit var loginModel: LoginModel
+    private lateinit var emailUser: EmailUser
 
     override fun getEmailChange() {
 
@@ -18,6 +18,7 @@ class LoginPresenter(override val view: ILoginView) : ILoginPresenter {
 
         view.txtEmailTextChange().skip(1).subscribe {
             if (it.isNotEmpty() && isValidEmail(it.toString())) {
+                view.hideErrorEmail()
                 view.enableButton()
                 emailUser = EmailUser(it.toString())
             } else {
@@ -38,18 +39,29 @@ class LoginPresenter(override val view: ILoginView) : ILoginPresenter {
         view.hideBtn()
         view.startAnimationLoading()
         if (view.checkNetwork()) {
-            loginModel = LoginModel()
-            loginModel.callServiceToken(emailUser)
+            val model = LoginModel()
+            model.callServiceToken(emailUser)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         saveCacheToken(it.user?.token)
                         view.stopAnimationLoading()
                     }, {
-                        view.setError()
+                        if (it is HttpException) {
+                            when (it.code()) {
+                                EnumExceptions.INVALID_EMAIL.code ->  view.setErrorEmailDialog()
+                                EnumExceptions.NOT_AUTHORIZED.code -> view.setErrorNotAuthorized()
+                                EnumExceptions.NOT_AUTHORIZED.code -> view.setError()
+                                EnumExceptions.INTERNAL_SERVER_ERROR.code -> view.setError()
+                            }
+
+                        }
+                        view.disableButton()
                         view.stopAnimationLoading()
                         view.showBtn()
                     })
 
-        } else{
+        } else {
             view.showMessageErrorInternet()
             view.stopAnimationLoading()
             view.showBtn()
@@ -63,9 +75,9 @@ class LoginPresenter(override val view: ILoginView) : ILoginPresenter {
     }
 
     override fun checkNewUser() {
-       Utils.getToken().let {
-          if(it.isEmpty()) return
-           else view.goToHome()
+        Utils.getToken().let {
+            if (it.isEmpty()) return
+            else view.goToHome()
         }
     }
 }

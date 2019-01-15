@@ -1,6 +1,6 @@
 package br.com.android.aline.iddog.activity.login
 
-import android.content.SharedPreferences
+
 
 interface ILoginPresenter {
 

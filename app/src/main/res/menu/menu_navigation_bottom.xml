@@ -4,12 +4,12 @@
     <item
         android:id="@+id/navigation_husky"
         android:title="@string/label_husky"
-        android:icon="@android:drawable/ic_menu_add"/>
+        android:icon="@drawable/ic_husky"/>
 
     <item
         android:id="@+id/navigation_hound"
         android:title="@string/label_hound"
-        android:icon="@android:drawable/ic_menu_camera"/>
+        android:icon="@drawable/ic_hound"/>
 
     <item
         android:id="@+id/navigation_pug"
@@ -19,6 +19,6 @@
     <item
         android:id="@+id/navigation_labrador"
         android:title="@string/label_labrador"
-        android:icon="@android:drawable/ic_menu_camera"/>
+        android:icon="@drawable/ic_labrador"/>
 
 </menu>

@@ -31,5 +31,7 @@
     <string name="btn_sign_in">Entrar</string>
     <string name="label_logo_id">id</string>
     <string name="label_logo_dog">dog</string>
+    <string name="invalid_email_login">E-mail inválido.</string>
+    <string name="error_user_unauthorized">Acesso negado.</string>
 
 </resources>

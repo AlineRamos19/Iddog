@@ -16,9 +16,12 @@ interface ILoginView {
     fun goToHome()
     fun checkIsNewUser()
     fun hideKeyBoard()
-    fun  startAnimationLoading()
+    fun startAnimationLoading()
     fun stopAnimationLoading()
     fun hideBtn()
     fun showBtn()
+    fun setErrorEmailDialog()
+    fun setErrorNotAuthorized()
+    fun hideErrorEmail()
 
 }

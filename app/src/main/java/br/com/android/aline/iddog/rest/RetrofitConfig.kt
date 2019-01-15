@@ -43,8 +43,6 @@ class RetrofitConfig {
 class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain?): Response {
 
-
-
         val requestBuilder = chain!!.request().newBuilder()
         requestBuilder.header("Authorization", Utils.getToken())
         val request = requestBuilder.build()

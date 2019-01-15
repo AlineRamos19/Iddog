@@ -2,6 +2,7 @@
 <android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/max_height_login"
+    android:padding="@dimen/margin_card_4"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
