@@ -24,10 +24,10 @@ Ao clicar em uma imagem específica, ela será aberta no tamanho original.
 
 ###### Motivação para utilização das bibliotecas
 + Otimização no tempo de desenvolvimento.
-+ Upload de imagens em cache para evitar disperdicio de memória e melhor performance de releitura -> Glide
-+ Simplicidade em não se preocupar  em criar toda a complexidade de uma conexão Web Service -> Retrofit2 | RxAdapter2 | Retrofit2 - converterGson | Okhttp3 
-+ Controle mais fácil e melhor com programação de reativa -> Rxjava | Rxbinding3
-+ Layout customizado e elegante do progress loading -> Avi
++ Upload de imagens em cache para evitar disperdicio de memória e melhor performance de releitura - *Glide*
++ Simplicidade em não se preocupar  em criar toda a complexidade de uma conexão Web Service - *Retrofit2 | RxAdapter2 | Retrofit2 - converterGson | Okhttp3* 
++ Controle mais fácil e melhor com programação reativa - *Rxjava | Rxbinding3*
++ Layout customizado e elegante do progress loading - *Avi*
 
 ###### Arqueitetura Utilizada
 + MVP
